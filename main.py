@@ -125,7 +125,14 @@ example_questions = [
     "What's the mean score for writing?"
 ]
 
+# Defining a title
 st.title("AI-Powered Q&A App")
+
+# Describing the app
+st.markdown("In this app, I developed a solution for querying and extracting insights from a diverse set of data sources,\n" \
+            "including two articles and two CSV files, as outlined in the provided exercise instructions.\n" \
+            "The main goal was to enable asking free-form questions and obtaining answers that are substantiated by the data.\n" \
+            "We want the app to be based on the data sources provided. \n Hence, if we ask an unrelated question, the app will indicate that it doesn't know the answer. ")
 
 # Display the example questions in Markdown format
 st.markdown("### Example Questions")
