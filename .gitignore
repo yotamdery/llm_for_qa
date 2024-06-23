@@ -1,7 +1,7 @@
 # Folders
 __pycache__/
 .venv/
+.vscode/
 
 *.pyc
-*.vscode
-*DS_Store
+*.DS_Store

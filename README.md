@@ -1,6 +1,6 @@
 ## Steps to correctly install the dependent libraries on local machine
 1. `git clone https://github.com/yotamdery/llm_for_qa`
-2. `python3.8 -m venv .venv`
+2. `python3.12 -m venv .venv`
 (That's the python version used for this project)
 3. `source .venv/bin/activate`
 4. `pip install --upgrade pip`
