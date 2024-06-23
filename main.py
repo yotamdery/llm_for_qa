@@ -98,6 +98,19 @@ def answer_question(agent_executer1, agent_executer2, question: str , qa):
     # If no answer from any data source, return the default response
     return "Answer: I don't know the answer based on my data."
     
+
+# Streamlit interface
+st.title("AI-Powered Q&A App")
+
+question = st.text_input("Enter your question:")
+
+if st.button("Get Answer"):
+    if question:
+        answer = answer_question(agent_executer1, agent_executer2, question, qa)
+        st.write(answer)
+    else:
+        st.write("Please enter a question to get an answer.")
+
 # Define a list of example questions
 example_questions = [
     "What are the effects of legislations surrounding emissions on the Australia coal market?",
@@ -117,17 +130,5 @@ st.title("AI-Powered Q&A App")
 # Display the example questions in Markdown format
 st.markdown("### Example Questions")
 st.markdown("\n".join(f"- {question}" for question in example_questions))
-
-# Streamlit interface
-st.title("AI-Powered Q&A App")
-
-question = st.text_input("Enter your question:")
-
-if st.button("Get Answer"):
-    if question:
-        answer = answer_question(agent_executer1, agent_executer2, question, qa)
-        st.write(answer)
-    else:
-        st.write("Please enter a question to get an answer.")
 
 print(answer_question(agent_executer1, agent_executer2, question, qa))
