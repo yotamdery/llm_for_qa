@@ -35,9 +35,9 @@ for file_path in file_paths:
 # Set your OpenAI API key
 os.environ["OPENAI_API_KEY"] = ""
 # Initialize the language model
-llm_1 = ChatOpenAI(model="gpt-4o", temperature=0, verbose=True)
-llm_2 = ChatOpenAI(model="gpt-4", temperature=0, verbose=True)
-llm_3 = ChatOpenAI(model="gpt-4", temperature=0, verbose=True)
+llm_1 = ChatOpenAI(model="gpt-4o", temperature=0, openai_api_key=st.secrets["openai_api_key"], verbose=True)
+llm_2 = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key=st.secrets["openai_api_key"], verbose=True)
+llm_3 = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key=st.secrets["openai_api_key"], verbose=True)
 
 # Create the Python REPL tool
 python_repl_tool_1 = PythonREPLTool()
@@ -124,4 +124,4 @@ if st.button("Get Answer"):
     else:
         st.write("Please enter a question to get an answer.")
 
-# print(answer_question(agent_executer1, agent_executer2, question, qa))
+print(answer_question(agent_executer1, agent_executer2, question, qa))
