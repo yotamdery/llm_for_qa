@@ -32,19 +32,17 @@ for file_path in file_paths:
     loader = TextLoader(file_path)
     documents.extend(loader.load())
 
-# Set your OpenAI API key
-os.environ["OPENAI_API_KEY"] = ""
 # Initialize the language model
-llm_1 = ChatOpenAI(model="gpt-4o", temperature=0, openai_api_key=st.secrets["openai_api_key"], verbose=True)
-llm_2 = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key=st.secrets["openai_api_key"], verbose=True)
-llm_3 = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key=st.secrets["openai_api_key"], verbose=True)
+llm_1 = ChatOpenAI(model="gpt-4o", temperature=0, verbose=True)
+llm_2 = ChatOpenAI(model="gpt-4", temperature=0, verbose=True)
+llm_3 = ChatOpenAI(model="gpt-4", temperature=0, verbose=True)
 
 # Create the Python REPL tool
 python_repl_tool_1 = PythonREPLTool()
 python_repl_tool_2 = PythonREPLTool()
 
 # Create the embeddings for text files
-embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["openai_api_key"],)
+embeddings = OpenAIEmbeddings()
 
 # Split the documents into chunks
 text_splitter = CharacterTextSplitter(chunk_size=2500, chunk_overlap=0)
@@ -100,17 +98,25 @@ def answer_question(agent_executer1, agent_executer2, question: str , qa):
     # If no answer from any data source, return the default response
     return "Answer: I don't know the answer based on my data."
     
-# Example query
-# question = "What are the effects of legislations surrounding emissions on the Australia coal market?"
-# question = "What recent changes have been observed in gender differences in high school math and reading skills?"
-# question = "What's the most common range of studying hours per week?"
-# question = "How have societal attitudes towards gender roles influenced math achievement among students?"
-# question = "What factors have been identified as influencing standardized test scores?"
-# question = "How has the gender gap in educational attainment changed in recent years?"
-# question = "What day is tomorrow?"
-# question = "What's the average number of siblings for all observations?"
-# question = "What's the max number of siblings for all observations?"
-# question = "what's the mean score for writing?"
+# Define a list of example questions
+example_questions = [
+    "What are the effects of legislations surrounding emissions on the Australia coal market?",
+    "What recent changes have been observed in gender differences in high school math and reading skills?",
+    "What's the most common range of studying hours per week?",
+    "How have societal attitudes towards gender roles influenced math achievement among students?",
+    "What factors have been identified as influencing standardized test scores?",
+    "How has the gender gap in educational attainment changed in recent years?",
+    "What day is tomorrow?",
+    "What's the average number of siblings for all observations?",
+    "What's the max number of siblings for all observations?",
+    "What's the mean score for writing?"
+]
+
+st.title("AI-Powered Q&A App")
+
+# Display the example questions in Markdown format
+st.markdown("### Example Questions")
+st.markdown("\n".join(f"- {question}" for question in example_questions))
 
 # Streamlit interface
 st.title("AI-Powered Q&A App")
