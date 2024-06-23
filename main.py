@@ -36,6 +36,7 @@ for file_path in file_paths:
 llm_1 = ChatOpenAI(model="gpt-4o", temperature=0, verbose=True)
 llm_2 = ChatOpenAI(model="gpt-4", temperature=0, verbose=True)
 llm_3 = ChatOpenAI(model="gpt-4", temperature=0, verbose=True)
+llm_validator = ChatOpenAI(model="gpt-4", temperature=0, verbose=True)  # Add a model for validation
 
 # Create the Python REPL tool
 python_repl_tool_1 = PythonREPLTool()
@@ -65,8 +66,18 @@ qa = RetrievalQA.from_chain_type(
 agent_executer1 = create_csv_agent(llm_2, file_path1, tools=[python_repl_tool_1], max_iterations=10, allow_dangerous_code=True, verbose=True, handle_parsing_errors=True)
 agent_executer2 = create_csv_agent(llm_3, file_path2, tools=[python_repl_tool_2], max_iterations=10, allow_dangerous_code=True, verbose=True, handle_parsing_errors=True)
 
+# Function to validate the question using a language model
+def is_valid_question_llm(question: str) -> bool:
+    validation_prompt = f"Is the following text a valid, meaningful question? '{question}' Answer with 'Yes' or 'No'."
+    validation_response = llm_validator.invoke(validation_prompt)
+    return False if validation_response.content == 'No' else True
+
 # Function to answer questions based on the data
 def answer_question(agent_executer1, agent_executer2, question: str , qa):
+    # Validate the question using the language model
+    if not is_valid_question_llm(question):
+        return "Invalid question. Please make sure your question is meaningfqul and ends with a question mark."
+
     # Show the question, process the prompt
     print("Query: ", question)
     prompt = f"Here's a question: {question}. Answer it solely from the data file at hand. Do not mention that you do that. If you cannot find an answer, retrieve `I don't know the answer based on my data`"
