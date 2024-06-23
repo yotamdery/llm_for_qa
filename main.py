@@ -44,7 +44,7 @@ python_repl_tool_1 = PythonREPLTool()
 python_repl_tool_2 = PythonREPLTool()
 
 # Create the embeddings for text files
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["openai_api_key"],)
 
 # Split the documents into chunks
 text_splitter = CharacterTextSplitter(chunk_size=2500, chunk_overlap=0)
