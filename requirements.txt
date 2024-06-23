@@ -3,6 +3,7 @@ ipykernel
 numpy
 pandas
 streamlit
+faiss-cpu
 langchain
 langchain_experimental
 langchain_openai
