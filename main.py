@@ -103,6 +103,21 @@ def answer_question(agent_executer1, agent_executer2, question: str , qa):
 # Defining a title
 st.title("AI-Powered Q&A App")
 
+# Describing the app
+st.markdown('In this app, I developed a solution for querying and extracting insights from a diverse set of data sources,' \
+            'including two articles and two CSV files, as outlined in the provided exercise instructions.' \
+            'The main goal was to enable asking free-form questions and obtaining answers that are substantiated by the data.' \
+            'We want the app to be based on the data sources provided. Hence, if we ask an unrelated question, the app will indicate that it does not know the answer.')
+
+question = st.text_input("Enter your question:")
+
+if st.button("Get Answer"):
+    if question:
+        answer = answer_question(agent_executer1, agent_executer2, question, qa)
+        st.write(answer)
+    else:
+        st.write("Please enter a question to get an answer.")
+
 # Define a list of example questions
 example_questions = [
     "What are the effects of legislations surrounding emissions on the Australia coal market?",
@@ -117,23 +132,8 @@ example_questions = [
     "What's the mean score for writing?"
 ]
 
-# Describing the app
-st.markdown('In this app, I developed a solution for querying and extracting insights from a diverse set of data sources, <br>' \
-            'including two articles and two CSV files, as outlined in the provided exercise instructions. <br>' \
-            'The main goal was to enable asking free-form questions and obtaining answers that are substantiated by the data.<br' \
-            'We want the app to be based on the data sources provided. \n Hence, if we ask an unrelated question, the app will indicate that it does not know the answer. ')
-
 # Display the example questions in Markdown format
 st.markdown("### Example Questions")
 st.markdown("\n".join(f"- {question}" for question in example_questions))
-
-question = st.text_input("Enter your question:")
-
-if st.button("Get Answer"):
-    if question:
-        answer = answer_question(agent_executer1, agent_executer2, question, qa)
-        st.write(answer)
-    else:
-        st.write("Please enter a question to get an answer.")
 
 print(answer_question(agent_executer1, agent_executer2, question, qa))
