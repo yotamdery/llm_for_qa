@@ -99,17 +99,9 @@ def answer_question(agent_executer1, agent_executer2, question: str , qa):
     return "Answer: I don't know the answer based on my data."
     
 
-# Streamlit interface
+## Streamlit interface
+# Defining a title
 st.title("AI-Powered Q&A App")
-
-question = st.text_input("Enter your question:")
-
-if st.button("Get Answer"):
-    if question:
-        answer = answer_question(agent_executer1, agent_executer2, question, qa)
-        st.write(answer)
-    else:
-        st.write("Please enter a question to get an answer.")
 
 # Define a list of example questions
 example_questions = [
@@ -125,17 +117,23 @@ example_questions = [
     "What's the mean score for writing?"
 ]
 
-# Defining a title
-st.title("AI-Powered Q&A App")
-
 # Describing the app
-st.markdown("In this app, I developed a solution for querying and extracting insights from a diverse set of data sources,\n" \
-            "including two articles and two CSV files, as outlined in the provided exercise instructions.\n" \
+st.markdown("In this app, I developed a solution for querying and extracting insights from a diverse set of data sources, <br>" \
+            "including two articles and two CSV files, as outlined in the provided exercise instructions. <br>" \
             "The main goal was to enable asking free-form questions and obtaining answers that are substantiated by the data.\n" \
             "We want the app to be based on the data sources provided. \n Hence, if we ask an unrelated question, the app will indicate that it doesn't know the answer. ")
 
 # Display the example questions in Markdown format
 st.markdown("### Example Questions")
 st.markdown("\n".join(f"- {question}" for question in example_questions))
+
+question = st.text_input("Enter your question:")
+
+if st.button("Get Answer"):
+    if question:
+        answer = answer_question(agent_executer1, agent_executer2, question, qa)
+        st.write(answer)
+    else:
+        st.write("Please enter a question to get an answer.")
 
 print(answer_question(agent_executer1, agent_executer2, question, qa))
