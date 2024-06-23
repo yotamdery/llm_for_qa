@@ -118,10 +118,10 @@ example_questions = [
 ]
 
 # Describing the app
-st.markdown("In this app, I developed a solution for querying and extracting insights from a diverse set of data sources, <br>" \
-            "including two articles and two CSV files, as outlined in the provided exercise instructions. <br>" \
-            "The main goal was to enable asking free-form questions and obtaining answers that are substantiated by the data.\n" \
-            "We want the app to be based on the data sources provided. \n Hence, if we ask an unrelated question, the app will indicate that it doesn't know the answer. ")
+st.markdown('In this app, I developed a solution for querying and extracting insights from a diverse set of data sources, <br>' \
+            'including two articles and two CSV files, as outlined in the provided exercise instructions. <br>' \
+            'The main goal was to enable asking free-form questions and obtaining answers that are substantiated by the data.<br' \
+            'We want the app to be based on the data sources provided. \n Hence, if we ask an unrelated question, the app will indicate that it does not know the answer. ')
 
 # Display the example questions in Markdown format
 st.markdown("### Example Questions")
