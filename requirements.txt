@@ -4,6 +4,7 @@ numpy
 pandas
 streamlit
 faiss-cpu
+tabulate
 langchain
 langchain_experimental
 langchain_openai
